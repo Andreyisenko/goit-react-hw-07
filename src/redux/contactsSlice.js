@@ -11,6 +11,8 @@ const slice = createSlice({
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+    loading: false,
+    error: null
   },
   reducers: {
     addContact: (state, { payload }) => {
