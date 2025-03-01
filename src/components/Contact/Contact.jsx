@@ -2,7 +2,8 @@ import { IoCall } from 'react-icons/io5';
 import css from './Contact.module.css';
 import { FaUser } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contactsSlice';
+import { deleteContact } from '../../redux/contactsOps';
+// import { deleteContact } from '../../redux/contactsSlice';
 
 const Contact = ({ contact: { name, number, id } }) => {
   const dispatch = useDispatch()

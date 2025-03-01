@@ -1,7 +1,7 @@
 // src/redux/tasksSlice.js
 
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from './contactsOps';
+import { addContact, deleteContact, fetchContacts } from './contactsOps';
 // import { build } from 'vite';
 
 const slice = createSlice({
@@ -12,24 +12,24 @@ const slice = createSlice({
     error: null,
   },
 
-  reducers: {
-    addContact: (state, { payload }) => {
-      state.items.push(payload);
-    },
-    deleteContact: (state, { payload }) => {
-      state.items = state.items.filter(contact => contact.id !== payload);
-    },
-    fetchContactsSuccess: (state, action) => {
-      state.items = action.payload;
-      state.loading = false;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
-    },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
-    },
-  },
+  // reducers: {
+  //   addContact: (state, { payload }) => {
+  //     state.items.push(payload);
+  //   },
+  //   deleteContact: (state, { payload }) => {
+  //     state.items = state.items.filter(contact => contact.id !== payload);
+  //   },
+  //   fetchContactsSuccess: (state, action) => {
+  //     state.items = action.payload;
+  //     state.loading = false;
+  //   },
+  //   setError: (state, action) => {
+  //     state.error = action.payload;
+  //   },
+  //   setLoading: (state, action) => {
+  //     state.loading = action.payload;
+  //   },
+  // },
 
   extraReducers: builder => {
     builder
@@ -43,18 +43,24 @@ const slice = createSlice({
       .addCase(fetchContacts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.items = state.items.filter(item => item.id !== action.payload);
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.items.push(action.payload);
       });
   },
 });
 
 export const selectContacts = state => state.contacts.items;
 
-export const {
-  addContact,
-  deleteContact,
-  fetchContactsSuccess,
-  setError,
-  setLoading,
-} = slice.actions;
+// export const {
+  
+
+//   fetchContactsSuccess,
+//   setError,
+//   setLoading,
+// } = slice.actions;
 
 export const contactsReducer = slice.reducer;

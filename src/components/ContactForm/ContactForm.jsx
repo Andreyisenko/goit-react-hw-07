@@ -1,11 +1,13 @@
 import { Field, Form, Formik } from 'formik';
 import css from './ContactForm.module.css';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { useId } from 'react';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/contactsOps';
+// import { addContact } from '../../redux/contactsOps';
+// import { addContact } from '../../redux/contactsSlice';
 const ContactForm = () => {
   const nameFieldId = useId();
   const telFieldId = useId();
@@ -22,7 +24,7 @@ const dispatch = useDispatch()
   });
 
   const initialValues = {
-    id: '',
+    // id: '',
     number: '',
     name: '',
   };
@@ -30,7 +32,7 @@ const dispatch = useDispatch()
     dispatch(addContact({
       name: values.name,
       number: values.number,
-      id: nanoid(),
+      // id: nanoid(),
     }));
     actions.resetForm();
   };
