@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './SearchBox.module.css';
 import { useId } from 'react';
-import { changeFilter, selectFilter } from '../../redux/filtersSlice';
+import { changeFilter, selectNameFilter } from '../../redux/filtersSlice';
 const SearchBox = () => {
-  const value = useSelector(selectFilter);
+  const value = useSelector(selectNameFilter);
   const labId = useId();
   const dispatch = useDispatch();
   return (
@@ -18,7 +18,6 @@ const SearchBox = () => {
         name="search"
         placeholder="Search..."
       ></input>
-      <p>{value}</p>
     </div>
   );
 };

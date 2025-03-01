@@ -1,19 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Contact from '../Contact/Contact';
 import css from './ContactList.module.css';
-import { selectContacts } from '../../redux/contactsSlice';
-import { selectFilter } from '../../redux/filtersSlice';
-import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/contactsOps';
+import { selectFilteredContacts } from '../../redux/contactsSlice';
+import { selectNameFilter } from '../../redux/filtersSlice';
 const ContactList = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
-  const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
+  const contacts = useSelector(selectFilteredContacts);
+  const filter = useSelector(selectNameFilter);
   const visibleContact = contacts.filter(cont =>
     cont.name.toLowerCase().includes(filter.toLowerCase().trim())
   );
