@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div>
-      <p>goit-react-hw-07</p>
+      <p>goit-react-hw-7</p>
       <IoCall size={30} /> <h1 className="title"> Phonebook</h1>
       <ContactForm />
       <SearchBox />
